@@ -42,7 +42,7 @@ export default function App() {
   return (
     <>
       <NewTodoForm onSubmit={addTodo} />
-      <h1 className="header">To do list</h1>
+      <h1 className="header" data-testid = "todo-app">To do list</h1>
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
     </>
   );
