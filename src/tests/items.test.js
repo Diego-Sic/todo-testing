@@ -2,13 +2,18 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { TodoList } from '../todoList';
+import { v4 as uuidv4 } from 'uuid';
+global.crypto = {
+  ...global.crypto,
+  randomUUID: uuidv4,
+};
 
 describe('TodoList', () => {
   const mockToggleTodo = jest.fn();
   const mockDeleteTodo = jest.fn();
   const todos = [
-    { id: 'todo1', title: 'First Todo', completed: false },
-    { id: 'todo2', title: 'Second Todo', completed: true },
+    { id: crypto.randomUUID(), title: 'First Todo', completed: false },
+    { id: crypto.randomUUID(), title: 'Second Todo', completed: true },
   ];
 
   beforeEach(() => {
@@ -32,3 +37,6 @@ describe('TodoList', () => {
     expect(mockToggleTodo).toHaveBeenCalledWith(todos[0].id, !todos[0].completed);
   });
 });
+
+
+
